@@ -10,9 +10,8 @@ class Product
     private $quantity;
     private $createdAt;
     private $updatedAt;
-    private $category_id; // Nouveau champ pour stocker l'ID de la catégorie
 
-    public function __construct($id, $name, $photos, $price, $description, $quantity, $createdAt, $updatedAt, $category_id)
+    public function __construct($id, $name, $photos, $price, $description, $quantity, $createdAt, $updatedAt)
     {
         $this->id = $id;
         $this->name = $name;
@@ -22,7 +21,6 @@ class Product
         $this->quantity = $quantity;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
-        $this->category_id = $category_id;
     }
 
     // Getters
@@ -66,17 +64,44 @@ class Product
         return $this->updatedAt;
     }
 
-    // Nouveau Getter et Setter pour category_id
-    public function getCategoryId()
+    // Setters
+    public function setId($id)
     {
-        return $this->category_id;
+        $this->id = $id;
     }
 
-    public function setCategoryId($category_id)
+    public function setName($name)
     {
-        $this->category_id = $category_id;
+        $this->name = $name;
     }
 
-    // Setters pour les autres propriétés (ils étaient déjà définis précédemment)
-    // ...
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
+
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
 }
