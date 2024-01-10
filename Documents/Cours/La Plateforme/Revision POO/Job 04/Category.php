@@ -2,21 +2,10 @@
 
 class Category
 {
-    private ?int $id;
-    private ?string $name;
-    private ?string $description;
-    private ?DateTime $createdAt;
-    private ?DateTime $updatedAt;
-
-    public function __construct(?int $id, ?string $name, ?string $description, ?DateTime $createdAt, ?DateTime $updatedAt)
+    public function __construct(private ?int $id = null, private ?string $name = null, private ?string $description = null, private ?DateTime $createdAt = null, private ?DateTime $updatedAt = null)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
+        // construct here
     }
-
     /**
      * Get the value of id
      */

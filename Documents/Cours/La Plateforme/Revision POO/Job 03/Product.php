@@ -2,25 +2,10 @@
 
 class Product
 {
-    private ?int $id;
-    private ?string $name;
-    private ?array $photos;
-    private ?int $price;
-    private ?string $description;
-    private ?int $quantity;
-    private ?DateTime $createdAt;
-    private ?DateTime $updatedAt;
 
-    public function __construct(?int $id, ?string $name, ?array $photos, ?int $price, ?string $description, ?int $quantity, ?DateTime $createdAt, ?DateTime $updatedAt)
+    public function __construct(private ?int $id = null, private ?string $name = null, private ?array $photos = null, private ?int $price = null, private ?string $description = null, private ?int $quantity = null, private ?DateTime $createdAt = null, private ?DateTime $updatedAt = null, private ?int $category_id = null)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->photos = $photos;
-        $this->price = $price;
-        $this->description = $description;
-        $this->quantity = $quantity;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
+        // construct here
     }
 
     /**
@@ -179,6 +164,26 @@ class Product
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category_id
+     */
+    public function getCategory_id()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set the value of category_id
+     *
+     * @return  self
+     */
+    public function setCategory_id($category_id)
+    {
+        $this->category_id = $category_id;
 
         return $this;
     }

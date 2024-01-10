@@ -1,12 +1,45 @@
 <?php
+// connect to database pdo
+$dbname = 'draft-shop';
+$host = 'localhost';
+$dbuser = 'root';
+$password = '';
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $dbuser, $password);
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+
+
+
 require_once 'Product.php';
 require_once 'Category.php';
 
-$category1 = new Category(1, 'T-shirt', 'T-shirt coton', new DateTime('2020-06-14'), new DateTime('2020-06-14'));
-$category2 = new Category(2, 'Pantalon', 'Pantalon en jean', new DateTime('2020-06-14'), new DateTime('2020-06-14'));
+// $category1 = new Category(1, 'T-shirt', 'T-shirt coton', new DateTime('2020-06-14'), new DateTime('2020-06-14'));
+// $category2 = new Category(2, 'Pantalon', 'Pantalon en jean', new DateTime('2020-06-14'), new DateTime('2020-06-14'));
 
 
-$product = new Product(1, 'T-shirt noir', ['https://picsum.photos/200/300'], 15, 'T-shirt coton de couleur noire', 10, new DateTime('2020-06-14'), new DateTime('2020-06-14'), 1);
+// $product = new Product(1, 'T-shirt noir', ['https://picsum.photos/200/300'], 15, 'T-shirt coton de couleur noire', 10, new DateTime('2020-06-14'), new DateTime('2020-06-14'), 1);
+
+// $productNull = new Product();
+// var_dump($productNull);
+
+// transformer la colonne photos en array
+$request = "SELECT * FROM product WHERE id = 7";
+$select = $pdo->prepare($request);
+$select->execute();
+$result = $select->fetch(PDO::FETCH_ASSOC);
+$result['photos'] = json_decode($result['photos']);
+
+// var_dump($result);
+
+
+
+$product = new Product($result['id'], $result['name'], $result['photos'], $result['price'], $result['description'], $result['quantity'], new DateTime($result['createdAt']), new DateTime($result['updatedAt']), $result['category-id']);
+
+var_dump($product);
+
 
 
 
@@ -18,7 +51,7 @@ $product = new Product(1, 'T-shirt noir', ['https://picsum.photos/200/300'], 15,
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job02</title>
+    <title>Job04</title>
     <style>
         th,
         td {
@@ -44,7 +77,7 @@ $product = new Product(1, 'T-shirt noir', ['https://picsum.photos/200/300'], 15,
 </head>
 
 <body>
-    <h1>Job02</h1>
+    <h1>Job04</h1>
 
     <table>
         <thead>
